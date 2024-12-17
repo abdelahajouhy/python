@@ -1,0 +1,6 @@
+*.pdf
+env/
+venv/
+exo5-task1/
+my-env3/
+*env*/
