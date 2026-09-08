@@ -3,7 +3,7 @@ name: Build File Manager
 on:
   push:
     branches:
-      - main
+      - feature/file-manager-qualification
 
 jobs:
   build:
