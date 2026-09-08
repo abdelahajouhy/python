@@ -1,0 +1,11 @@
+{
+  "name": "John",
+  "age": 30,
+  "city": "New York",
+  "isEmployed": true,
+  "hobbies": ["reading", "hiking"],
+  "address": {
+    "street": "123 Main St",
+    "zipcode": "10001"
+  }
+}
