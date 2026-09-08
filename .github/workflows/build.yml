@@ -1,0 +1,38 @@
+name: Build File Manager
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os:
+          - windows-latest
+          - macos-latest
+          - ubuntu-latest
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install PyInstaller
+        run: python -m pip install pyinstaller
+
+      - name: Build
+        run: python -m PyInstaller --onefile file_manager/file_manager.py
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: file-manager-${{ matrix.os }}
+          path: dist/
