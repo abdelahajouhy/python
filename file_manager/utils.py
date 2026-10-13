@@ -2,12 +2,10 @@ from datetime import datetime, timedelta
 import shutil
 import logging
 
-LIMIT_DAY = 180  # 6 months for the production
-
+LIMIT_DAY = 180  # 6 months, you can change it.
 
 def convert_date(x):
     return datetime.fromtimestamp(x)
-
 
 def isold(creation_date, modification_date):
     now = datetime.now()
@@ -18,7 +16,6 @@ def isold(creation_date, modification_date):
         return True
     else:
         return False
-
 
 def menage(source, destination):
     logging.info(f"Déplacement : {source} -> {destination}")
