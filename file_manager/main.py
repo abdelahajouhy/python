@@ -2,6 +2,6 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 
-logging.info("TEST LOG MAIN")
+logging.info("Start the fmanager")
 
 import file_manager
