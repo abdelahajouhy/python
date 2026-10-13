@@ -6,7 +6,7 @@ from datetime import datetime
 from pathlib import Path
 from utils import convert_date, isold, menage
 
-folder = Path(input("Chemin du dossier à nettoyer : "))
+folder = Path(input("`Paste the path of the folder you want to clean : "))
 
 containt = list(folder.glob("**/*.*"))
 
@@ -19,11 +19,10 @@ elif os_name == "Darwin":
 elif os_name == "Linux":
     desktop = Path.home() / "Desktop"
 else:
-    raise OSError(f"Système non supporté : {os_name}")
+    raise OSError(f"Unsupported operating system : {os_name}")
 
-to_clean = desktop / "bordel"
+to_clean = desktop / "mess"
 report = desktop / "report.json"
-
 
 [x for x in folder.iterdir() if x.is_dir()]
 
@@ -34,7 +33,7 @@ trash_files = []
 
 if os.path.exists(to_clean):
     print(
-        f"** regarde dossier à clean, nettoie le et supprime le avant de vouloir me lancer, voir **: \n{to_clean},"
+        f"** Check the folder to clean, clean it, and delete it before attempting to launch **: \n{to_clean},"
     )
     exit()
 
@@ -66,11 +65,11 @@ files_info.update(
     }
 )
 
-############# report
+############# report #############
 with open(report, "w", encoding="utf-8") as f:
     json.dump(files_info, fp=f, sort_keys=True, indent=3, default=str)
 
-#############  check des poubelles
+############# Check the trash #############
 print(trash_files)
 for f in files:
     if files_info[f]["trash"]:
@@ -81,6 +80,6 @@ if any(trash_files):
 
     for d in trash_files:
         src = files_info[d]["path"]
-        print("APPEL MENAGE :", src)
+        print("CALL CLEAN :", src)
         print(to_clean)
         menage(source=src, destination=to_clean)
